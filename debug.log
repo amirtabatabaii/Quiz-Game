@@ -1,0 +1,6 @@
+[0126/100656.774:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0126/100656.776:ERROR:exception_snapshot_win.cc(98)] thread ID 11328 not found in process
+[0126/100656.776:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0127/100453.590:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0127/100453.591:ERROR:exception_snapshot_win.cc(98)] thread ID 12888 not found in process
+[0127/100453.592:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
