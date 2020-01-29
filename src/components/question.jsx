@@ -32,7 +32,7 @@ class Question extends Component {
           {/* shadow p-2 mb-4 bg-white */}
           <div className="col-6">
             <span className="badge badge-primary">
-              Question {this.props.CurrentQuestion} of 10
+              Question {this.props.currentQuestion} of 10
             </span>
           </div>
 
@@ -75,7 +75,7 @@ class Question extends Component {
         <div className="text-center" style={{ marginTop: 16 }}>
           <Radio.Group
             onChange={this.onChange}
-            defaultValue={this.state.currentAnswer}
+            //defaultValue={this.props.option[0]}
             buttonStyle="solid"
           >
             <h5>

@@ -3,9 +3,7 @@ import correct from "../assets/correct.gif";
 import { Button } from "antd";
 
 class Correct extends Component {
-  state = {
-    currentQuestion: this.props.currentQuestion
-  };
+  state = {};
 
   render() {
     return (
@@ -15,10 +13,7 @@ class Correct extends Component {
             <img src={correct} alt="" width="200" height="200" />
             <h1 className="text-success">Congratulations!</h1>
 
-            <h3 className="lead">
-              Your Score is {this.props.score}/{this.state.currentQuestion}/
-              {this.props.currentQuestion}
-            </h3>
+            <h3 className="lead">Your Score is {this.props.score}</h3>
             {this.state.currentQuestion === 10 ? (
               <Button
                 className=" m-5"

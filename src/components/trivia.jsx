@@ -17,8 +17,7 @@ class Quiz extends Component {
       randomAnswer: [],
       selectedAnswer: "",
       ifTrueAnswer: null,
-      btnLoading: false,
-      btnIconLoading: false
+      showQst: true
     };
   }
 
@@ -36,37 +35,21 @@ class Quiz extends Component {
   }
 
   getRandomAnswer = num => {
-    //console.log("questionIndex function 1 : ", num);
-    //console.log("randomAnswer function 1 : ", this.state.randomAnswer);
-
     const { data } = this.state;
     const correctAns = data[num].correct_answer;
     const incorrectAns = data[num].incorrect_answers;
+
     incorrectAns.push(correctAns);
-    // console.log("correctAns : ", correctAns);
-    // console.log("incorrectAns : ", incorrectAns);
-    this.setState(
-      {
-        correct: correctAns, //this.state.data[num].correct_answer,
-        incorrect: incorrectAns, //this.state.data[num].incorrect_answer,
-        randomAnswer: incorrectAns
-      },
-      () => {
-        // console.log("questionIndex function 2 : ", num);
-        // console.log("randomAnswer function 2 : ", this.state.randomAnswer);
-        // console.log("correct_answer : ", this.state.correct_answer);
-        // console.log("Incorrect_answer : ", this.state.incorrect_answer);
-      }
-    );
-    // console.log("questionIndex function 2 end : ", num);
-    // console.log("randomAnswer function 2 end: ", this.state.randomAnswer);
-    // console.log("******************");
+    this.setState({
+      correct: correctAns,
+      incorrect: incorrectAns,
+      randomAnswer: incorrectAns
+    });
   };
 
   getQuestion(questionIndex) {
     const { data } = this.state;
     if (data.length === 0) return "[Data is not ready]";
-    // console.log("questionIndex bad", questionIndex);
     let res = data[questionIndex].question;
     return res;
   }
@@ -91,7 +74,8 @@ class Quiz extends Component {
   handleOnClick = () => {
     this.setState({
       ifTrueAnswer:
-        this.state.selectedAnswer === this.state.correct ? true : false
+        this.state.selectedAnswer === this.state.correct ? true : false,
+      showQst: false
     });
   };
 
@@ -105,7 +89,8 @@ class Quiz extends Component {
       incorrect: [],
       randomAnswer: [],
       selectedAnswer: "",
-      ifTrueAnswer: null
+      ifTrueAnswer: null,
+      showQst: null
     });
     window.location.reload();
   };
@@ -115,36 +100,21 @@ class Quiz extends Component {
 
     const correctAns = this.state.data[qstIndx].correct_answer;
     const incorrectAns = this.state.data[qstIndx].incorrect_answers;
-    // console.log("correctAns btn : ", correctAns);
-    // console.log("incorrectAns btn : ", incorrectAns);
     incorrectAns.push(correctAns);
     const answers = this.getRandomOption(incorrectAns);
-    const randomAnswerrrrr = answers; //this.getRandomAnswer(qstIndx);
-    // console.log("randomAnswer btn", answers);
-    // console.log("qstIndx btn", qstIndx);
 
-    this.setState(
-      {
-        questionIndex: this.state.questionIndex + 1,
-        score: this.state.score + 100,
-        //     data: prev[num]
-        currentQuestion: this.state.currentQuestion + 1,
-        correct: correctAns,
-        incorrect: incorrectAns,
-        randomAnswer: answers,
-        selectedAnswer: "",
-        ifTrueAnswer: null,
-        btnLoading: false,
-        btnIconLoading: false
-      },
-      () => {
-        // console.log("questionIndex setState btn", this.state.questionIndex);
-        // console.log("score setState btn", this.state.score);
-        // console.log("data setState btn", this.state.data);
-        // console.log("currentQuestion setState btn", this.state.currentQuestion);
-        // console.log("randomAnswer setState btn", this.state.randomAnswer);
-      }
-    );
+    this.setState({
+      questionIndex: this.state.questionIndex + 1,
+      score: this.state.score + 100,
+      //     data:
+      currentQuestion: this.state.currentQuestion + 1,
+      correct: correctAns,
+      incorrect: incorrectAns,
+      randomAnswer: answers,
+      selectedAnswer: "",
+      ifTrueAnswer: null,
+      showQst: true
+    });
   };
 
   showTextWithSpecialCharacters(text) {
@@ -166,21 +136,25 @@ class Quiz extends Component {
               <h2 className="text-danger"> Trivia Game </h2>
             </header>
           </div>
-          <div className="m-5 shadow p-4 mb-4 bg-white">
-            <Question
-              option={randomAnswer}
-              currentQuestion={currentQuestion}
-              score={score}
-              selectedAnswer={this.handleTrueAnswer}
-              question={this.getQuestion(questionIndex)}
-              clicked={this.handleOnClick}
-              category={this.props.category}
-              difficulty={this.props.difficulty}
-              loading={this.state.btnLoading}
-              iconLoading={this.state.btnLoading}
-              showTextWithSpecialCharacters={this.showTextWithSpecialCharacters}
-            />
-          </div>
+          {this.state.showQst ? (
+            <div className="m-5 shadow p-4 mb-4 bg-white">
+              <Question
+                option={randomAnswer}
+                currentQuestion={currentQuestion}
+                score={score}
+                selectedAnswer={this.handleTrueAnswer}
+                question={this.getQuestion(questionIndex)}
+                clicked={this.handleOnClick}
+                category={this.props.category}
+                difficulty={this.props.difficulty}
+                loading={this.state.btnLoading}
+                iconLoading={this.state.btnLoading}
+                showTextWithSpecialCharacters={
+                  this.showTextWithSpecialCharacters
+                }
+              />
+            </div>
+          ) : null}
 
           {this.state.ifTrueAnswer === true ? (
             <Correct
