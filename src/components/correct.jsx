@@ -14,7 +14,7 @@ class Correct extends Component {
             <h1 className="text-success">Congratulations!</h1>
 
             <h3 className="lead">Your Score is {this.props.score}</h3>
-            {this.state.currentQuestion === 10 ? (
+            {this.props.currentQuestion === 10 ? (
               <Button
                 className=" m-5"
                 type="danger"
@@ -22,7 +22,7 @@ class Correct extends Component {
               >
                 Restart
               </Button>
-            ) : this.state.currentQuestion !== 10 ? (
+            ) : this.props.currentQuestion !== 10 ? (
               <Button
                 className=" m-5"
                 type="bg-success"
