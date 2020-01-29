@@ -7,6 +7,7 @@ class Question extends Component {
     loading: this.props.loading,
     iconLoading: this.props.iconLoading,
     currentAnswer: this.props.option[0],
+    userAnswer: "",
     showComponent: false,
     trueAnswer: false
   };
@@ -22,6 +23,7 @@ class Question extends Component {
 
   onChange = e => {
     const userAnswer = e.target.value;
+    this.setState({ userAnswer: userAnswer });
     this.props.selectedAnswer(userAnswer);
   };
 
@@ -101,14 +103,16 @@ class Question extends Component {
           </Radio.Group>
         </div>
         <div>
-          <Button
-            className="m-3 h6 "
-            type="primary"
-            loading={this.state.loading}
-            onClick={this.enterLoading}
-          >
-            Check The Answer
-          </Button>
+          {this.state.userAnswer === "" ? null : (
+            <Button
+              className="m-3 h6 "
+              type="primary"
+              loading={this.state.loading}
+              onClick={this.enterLoading}
+            >
+              Check The Answer
+            </Button>
+          )}
         </div>
       </React.Fragment>
     );

@@ -29,7 +29,7 @@ class Quiz extends Component {
       });
     });
 
-    console.log("data 0", this.state.data);
+    //console.log("data 0", this.state.data);
 
     this.getRandomAnswer(this.state.questionIndex);
   }
