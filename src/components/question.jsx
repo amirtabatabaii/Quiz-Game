@@ -30,7 +30,7 @@ class Question extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row text-center h5">
+        <div className="row text-center h5 ">
           {/* shadow p-2 mb-4 bg-white */}
           <div className="col-6">
             <span className="badge badge-primary">

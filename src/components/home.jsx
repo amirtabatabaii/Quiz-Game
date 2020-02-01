@@ -6,7 +6,7 @@ class Home extends Component {
   state = {};
   render() {
     return (
-      <div className="container py-5 my-5">
+      <div className="container py-5 my-5 animate bounceIn">
         <div className="card text-center">
           <div className="card-header  bg-info text-white h3">
             Welcome to Trivia Game
@@ -14,7 +14,7 @@ class Home extends Component {
           <div className="card-body">
             <img src={start} alt="" width="200" height="200" />
             <h5 className="card-title">Please Select question properties : </h5>
-            <p className="card-text">
+            <div className="card-text">
               <div className="row">
                 <div className="col-6 text-primary">
                   <b>Select Difficulty</b>
@@ -43,7 +43,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-            </p>
+            </div>
           </div>
           <div className="card-footer text-muted">
             <Button onClick={this.props.onClick}>Start Game</Button>
